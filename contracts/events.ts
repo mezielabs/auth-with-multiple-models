@@ -5,6 +5,8 @@
  * file.
  */
 
+import User from 'App/Models/User'
+
 declare module '@ioc:Adonis/Core/Event' {
   /*
   |--------------------------------------------------------------------------
@@ -25,5 +27,12 @@ declare module '@ioc:Adonis/Core/Event' {
   | an instance of the the UserModel only.
   |
   */
-  interface EventsList {}
+  interface EventsList {
+    userRegistered: User
+    passwordResetRequested: {
+      user: User
+      token: string
+    }
+    passwordReset: User
+  }
 }
