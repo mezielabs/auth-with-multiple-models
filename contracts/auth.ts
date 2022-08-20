@@ -5,6 +5,7 @@
  * file.
  */
 
+import Admin from 'App/Models/Admin'
 import User from 'App/Models/User'
 
 declare module '@ioc:Adonis/Addons/Auth' {
@@ -37,6 +38,11 @@ declare module '@ioc:Adonis/Addons/Auth' {
       implementation: LucidProviderContract<typeof User>
       config: LucidProviderConfig<typeof User>
     }
+
+    admin: {
+      implementation: LucidProviderContract<typeof Admin>
+      config: LucidProviderConfig<typeof Admin>
+    }
   }
 
   /*
@@ -64,10 +70,15 @@ declare module '@ioc:Adonis/Addons/Auth' {
     | the `user` provider for fetching user details.
     |
     */
-    web: {
-      implementation: SessionGuardContract<'user', 'web'>
+    user: {
+      implementation: SessionGuardContract<'user', 'user'>
       config: SessionGuardConfig<'user'>
       client: SessionClientContract<'user'>
+    }
+    admin: {
+      implementation: SessionGuardContract<'admin', 'admin'>
+      config: SessionGuardConfig<'admin'>
+      client: SessionClientContract<'admin'>
     }
   }
 }

@@ -15,12 +15,18 @@ Route.group(() => {
     Route.get('register', 'RegisterController.create')
     Route.post('register', 'RegisterController.store')
 
+    Route.get('admin/register', 'AdminRegisterController.create')
+    Route.post('admin/register', 'AdminRegisterController.store')
+
     Route.get('verification/new', 'EmailVerificationController.create')
     Route.post('verification', 'EmailVerificationController.store')
     Route.get('verification/:email', 'EmailVerificationController.verify').as('verification.verify')
 
     Route.get('login', 'AuthController.create')
     Route.post('login', 'AuthController.store')
+
+    Route.get('admin/login', 'AdminAuthController.create')
+    Route.post('admin/login', 'AdminAuthController.store')
 
     Route.get('forgot-password', 'PasswordResetRequestController.create')
     Route.post('forgot-password', 'PasswordResetRequestController.store')

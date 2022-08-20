@@ -3,14 +3,14 @@ import LoginValidator from 'App/Validators/LoginValidator'
 
 export default class AuthController {
   public create({ view }: HttpContextContract) {
-    return view.render('auth/login')
+    return view.render('auth/admin-login')
   }
 
   public async store({ request, session, response, auth }: HttpContextContract) {
     const { email, password, remember } = await request.validate(LoginValidator)
 
     try {
-      await auth.use('user').attempt(email, password, remember)
+      await auth.use('admin').attempt(email, password, remember)
 
       session.flash({
         notification: {
